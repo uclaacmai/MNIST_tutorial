@@ -1,19 +1,23 @@
 from sklearn import datasets
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
-from sklearn import cross_validation
+from sklearn import model_selection
+import numpy as np
 
 
 # load the mnist dataset
 mnist_dataset = datasets.load_digits()
 
 # split into test and train and cv
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(mnist_dataset.data, mnist_dataset.target, test_size=0.5)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(mnist_dataset.data, mnist_dataset.target, test_size=0.8)
 
 # fit a logistic regression model to the data 
 model = LogisticRegression()
+train_size, train_scores, test_scores = model_selection.learning_curve(model, X_train, y_train, train_sizes=np.linspace(.1,1.0,5))
 model.fit(X_train, y_train)
+
 print(model)
+print((train_scores, train_size, test_scores))
 
 # make predictions
 expected = y_test
