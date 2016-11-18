@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 from sklearn import datasets
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn import cross_validation
-
+from sklearn.externals import joblib
 
 # load the mnist dataset
 # TODO split into test and train and cv
@@ -13,6 +14,7 @@ mnist_dataset = datasets.load_digits()
 model = LogisticRegression()
 model.fit(mnist_dataset.data, mnist_dataset.target)
 print(model)
+joblib.dump(model, 'model.pkl')
 
 # make predictions
 expected = mnist_dataset.target
