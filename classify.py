@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
 from sklearn import datasets
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn import model_selection
 import numpy as np
 
+from sklearn.externals import joblib
 
 # load the mnist dataset
 mnist_dataset = datasets.load_digits()
@@ -18,6 +20,7 @@ model.fit(X_train, y_train)
 
 print(model)
 print((train_scores, train_size, test_scores))
+joblib.dump(model, 'model.pkl')
 
 # make predictions
 expected = y_test
