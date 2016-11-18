@@ -6,19 +6,24 @@ from sklearn import cross_validation
 from sklearn.externals import joblib
 
 # load the mnist dataset
-# TODO split into test and train and cv
 mnist_dataset = datasets.load_digits()
-# cross_validation.train_test_split(mnist_dataset, test_size=0.8)
+
+# split into test and train and cv
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(mnist_dataset.data, mnist_dataset.target, test_size=0.5)
 
 # fit a logistic regression model to the data 
 model = LogisticRegression()
-model.fit(mnist_dataset.data, mnist_dataset.target)
+model.fit(X_train, y_train)
 print(model)
 joblib.dump(model, 'model.pkl')
 
 # make predictions
-expected = mnist_dataset.target
-predicted = model.predict(mnist_dataset.data)
+expected = y_test
+predicted = model.predict(X_test)
+# print (expected) #Actual Digits 
+# print (predicted) #Model prediction 
+
+print ("Accuracy: ", metrics.accuracy_score(y_test, predicted)*100, "%")
 
 # summarize the fit of the model
 
