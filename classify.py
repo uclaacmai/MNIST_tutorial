@@ -31,6 +31,12 @@ predicted = model.predict(X_test)
 print ("Accuracy: ", metrics.accuracy_score(y_test, predicted)*100, "%")
 
 # summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print (metrics.confusion_matrix(y_test, predicted))
+
+#cross-validation
+scores = cross_validation.cross_val_score(LogisticRegression(), mnist_dataset.data, mnist_dataset.target, scoring='accuracy', cv=10)
+
+print (scores[1]) # Do something with the cross validation scores pls!
 
 #TODO - Percision, Recall , F1, F2 score
-print(metrics.classification_report(expected, predicted))
