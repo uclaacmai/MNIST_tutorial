@@ -3,6 +3,7 @@ from sklearn import datasets
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn import model_selection
+from sklearn import cross_validation
 import numpy as np
 
 from sklearn.externals import joblib

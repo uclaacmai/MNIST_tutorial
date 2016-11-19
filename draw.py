@@ -79,4 +79,4 @@ class Paint:
 
 if __name__ == "__main__":
     p = Paint()
-    imsave('img.png', p.get_drawing())
+    imsave('img.png', p.get_digit())
