@@ -55,16 +55,12 @@ class Paint:
         im_arr = imresize(im_arr, size=f_size/max(*im_arr.shape), interp='bicubic')
         im_arr = normalize(im_arr)  # bicubic messes with our normalized values
 
-        print(im_arr.shape)
         extra = np.subtract((f_size, f_size), im_arr.shape)
         pad1 = np.floor_divide(extra, 2)
         pad2 = np.subtract(extra, pad1)
         top, left  = pad1
         bottom, right = pad2
-        print('left ', left)
-        print('right ', left)
         im_arr = np.pad(im_arr, ((top,bottom), (left,right)), mode='constant')
-        print('new shape ', im_arr.shape)
 
         return np.ceil(im_arr*16)
 
