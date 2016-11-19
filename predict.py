@@ -7,7 +7,7 @@ from scipy.misc import imshow
 drawing = Paint()
 model = joblib.load('model.pkl')
 im_arr = drawing.get_digit()
-im_vec = im_arr.flatten()
+im_vec = im_arr.reshape(1, -1)
 
 print(model.predict(im_vec))
 
